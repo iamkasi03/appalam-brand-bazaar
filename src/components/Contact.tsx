@@ -34,8 +34,8 @@ const Contact = () => {
                     <h4 className="font-semibold text-foreground mb-1">Our Address</h4>
                     <p className="text-muted-foreground">
                       Ram Traders<br />
-                      123 Traditional Street<br />
-                      Madurai, Tamil Nadu 625001<br />
+                      1485 T.N.H.B Colony,Villapuram<br />
+                      Madurai, Tamil Nadu 625012<br />
                       India
                     </p>
                   </div>
@@ -66,9 +66,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
                     <p className="text-muted-foreground">
-                      info@baskaranappalam.com<br />
-                      orders@baskaranappalam.com<br />
-                      support@baskaranappalam.com
+                      ramtraders87@gmail.com<br />
                     </p>
                   </div>
                 </CardContent>
@@ -168,7 +166,7 @@ const Contact = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h4 className="font-semibold text-foreground mb-2">FSSAI License Number</h4>
-              <p className="text-muted-foreground">12345678901234</p>
+              <p className="text-muted-foreground">12418012002462</p>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-2">License Category</h4>
