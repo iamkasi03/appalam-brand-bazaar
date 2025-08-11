@@ -67,16 +67,16 @@ const Footer = () => {
                 <MapPin className="w-5 h-5 mt-1 text-heritage-foreground/60" />
                 <div>
                   <p className="text-heritage-foreground/80">Ram Traders</p>
-                  <p className="text-heritage-foreground/80">123 Traditional Street</p>
-                  <p className="text-heritage-foreground/80">Madurai, Tamil Nadu 625001</p>
+                  <p className="text-heritage-foreground/80">1485,T.N.H.B Colony</p>
+                  <p className="text-heritage-foreground/80">Villapuram,Madurai, Tamil Nadu 625012</p>
                 </div>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-heritage-foreground/60" />
                 <div>
-                  <p className="text-heritage-foreground/80">+91 98765 43210</p>
-                  <p className="text-heritage-foreground/80">+91 87654 32109</p>
+                  <p className="text-heritage-foreground/80">+91 98430 67247</p>
+                  <p className="text-heritage-foreground/80">+91 98433 84940</p>
                 </div>
               </div>
               
