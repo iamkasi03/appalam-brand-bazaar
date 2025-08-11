@@ -67,6 +67,8 @@ const Footer = () => {
                 <MapPin className="w-5 h-5 mt-1 text-heritage-foreground/60" />
                 <div>
                   <p className="text-heritage-foreground/80">Ram Traders</p>
+                  <p className="text-heritage-foreground/80">1485,T.N.H.B Colony</p>
+                  <p className="text-heritage-foreground/80">Villapuram,Madurai, Tamil Nadu 625012</p>
                 </div>
               </div>
               
