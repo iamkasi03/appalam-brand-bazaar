@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Menu, X, ShoppingCart, User, Phone, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,6 +38,7 @@ const Header = () => {
             <a href="#products" className="text-foreground hover:text-primary transition-colors">Products</a>
             <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
             <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
+            <Link to="/contact" className="text-foreground hover:text-primary transition-colors">Send Message</Link>
           </nav>
 
           {/* Desktop Actions */}
@@ -75,6 +76,7 @@ const Header = () => {
               <a href="#products" className="text-foreground hover:text-primary transition-colors">Products</a>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
               <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
+              <Link to="/contact" className="text-foreground hover:text-primary transition-colors">Send Message</Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
                 <Button variant="outline" size="sm" onClick={handleAuthAction}>
                   {user ? <LogOut className="w-4 h-4 mr-2" /> : <User className="w-4 h-4 mr-2" />}
