@@ -1,9 +1,21 @@
 import { useState } from 'react';
-import { Menu, X, ShoppingCart, User, Phone } from 'lucide-react';
+import { Menu, X, ShoppingCart, User, Phone, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthAction = () => {
+    if (user) {
+      signOut();
+    } else {
+      navigate('/auth');
+    }
+  };
 
   return (
     <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
@@ -34,9 +46,9 @@ const Header = () => {
               <Phone className="w-4 h-4 mr-2" />
               Call Us
             </Button>
-            <Button variant="outline" size="sm">
-              <User className="w-4 h-4 mr-2" />
-              Login
+            <Button variant="outline" size="sm" onClick={handleAuthAction}>
+              {user ? <LogOut className="w-4 h-4 mr-2" /> : <User className="w-4 h-4 mr-2" />}
+              {user ? 'Logout' : 'Login'}
             </Button>
             <Button size="sm" className="bg-gradient-traditional hover:opacity-90">
               <ShoppingCart className="w-4 h-4 mr-2" />
@@ -64,9 +76,9 @@ const Header = () => {
               <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
               <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
-                <Button variant="outline" size="sm">
-                  <User className="w-4 h-4 mr-2" />
-                  Login
+                <Button variant="outline" size="sm" onClick={handleAuthAction}>
+                  {user ? <LogOut className="w-4 h-4 mr-2" /> : <User className="w-4 h-4 mr-2" />}
+                  {user ? 'Logout' : 'Login'}
                 </Button>
                 <Button size="sm" className="bg-gradient-traditional hover:opacity-90">
                   <ShoppingCart className="w-4 h-4 mr-2" />
