@@ -61,7 +61,12 @@ const Header = () => {
               {user ? <LogOut className="w-4 h-4 mr-2" /> : <User className="w-4 h-4 mr-2" />}
               {user ? 'Logout' : 'Login'}
             </Button>
-            <Button variant="ghost" size="sm" className="text-foreground">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="text-foreground"
+              onClick={() => window.open('tel:+919994683731', '_self')}
+            >
               <Phone className="w-4 h-4 mr-2" />
               Call Us
             </Button>
