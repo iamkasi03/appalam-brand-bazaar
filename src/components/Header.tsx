@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Menu, X, ShoppingCart, User, Phone, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
+import { useCart } from '@/contexts/CartContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const { getTotalItems } = useCart();
   const navigate = useNavigate();
 
   const handleAuthAction = () => {
@@ -38,22 +41,29 @@ const Header = () => {
             <a href="#products" className="text-foreground hover:text-primary transition-colors">Products</a>
             <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
             <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
-            <Link to="/contact" className="text-foreground hover:text-primary transition-colors">Send Message</Link>
+            <Link to="/contact-message" className="text-foreground hover:text-primary transition-colors">Send Message</Link>
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-foreground">
-              <Phone className="w-4 h-4 mr-2" />
-              Call Us
-            </Button>
+            <Link to="/cart">
+              <Button variant="outline" size="sm" className="relative">
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Cart
+                {getTotalItems() > 0 && (
+                  <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground min-w-5 h-5 text-xs flex items-center justify-center p-0">
+                    {getTotalItems()}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
             <Button variant="outline" size="sm" onClick={handleAuthAction}>
               {user ? <LogOut className="w-4 h-4 mr-2" /> : <User className="w-4 h-4 mr-2" />}
               {user ? 'Logout' : 'Login'}
             </Button>
-            <Button size="sm" className="bg-gradient-traditional hover:opacity-90">
-              <ShoppingCart className="w-4 h-4 mr-2" />
-              Order Now
+            <Button variant="ghost" size="sm" className="text-foreground">
+              <Phone className="w-4 h-4 mr-2" />
+              Call Us
             </Button>
           </div>
 
@@ -76,15 +86,17 @@ const Header = () => {
               <a href="#products" className="text-foreground hover:text-primary transition-colors">Products</a>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
               <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
-              <Link to="/contact" className="text-foreground hover:text-primary transition-colors">Send Message</Link>
+              <Link to="/contact-message" className="text-foreground hover:text-primary transition-colors">Send Message</Link>
+              <Link to="/cart" className="text-foreground hover:text-primary transition-colors">
+                <div className="flex items-center">
+                  <ShoppingCart className="w-4 h-4 mr-2" />
+                  Cart ({getTotalItems()})
+                </div>
+              </Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
                 <Button variant="outline" size="sm" onClick={handleAuthAction}>
                   {user ? <LogOut className="w-4 h-4 mr-2" /> : <User className="w-4 h-4 mr-2" />}
                   {user ? 'Logout' : 'Login'}
-                </Button>
-                <Button size="sm" className="bg-gradient-traditional hover:opacity-90">
-                  <ShoppingCart className="w-4 h-4 mr-2" />
-                  Order Now
                 </Button>
               </div>
             </nav>

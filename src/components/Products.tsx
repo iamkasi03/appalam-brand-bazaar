@@ -3,8 +3,13 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, Star, Package, Info } from 'lucide-react';
 import productImage from '@/assets/product-packages.jpg';
+import { useCart } from '@/contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
+  const { addItem } = useCart();
+  const navigate = useNavigate();
+  
   const products = [
     {
       id: 1,
@@ -105,13 +110,33 @@ const Products = () => {
                 </div>
               </CardContent>
 
-              <CardFooter className="flex gap-3">
-                <Button className="flex-1 bg-gradient-traditional hover:opacity-90">
+              <CardFooter className="flex gap-2">
+                <Button 
+                  className="flex-1 bg-gradient-traditional hover:opacity-90"
+                  onClick={() => addItem({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price
+                  })}
+                  disabled={!product.inStock}
+                >
                   <ShoppingCart className="w-4 h-4 mr-2" />
                   Add to Cart
                 </Button>
-                <Button variant="outline" size="icon">
-                  <Info className="w-4 h-4" />
+                <Button 
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => {
+                    addItem({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price
+                    });
+                    navigate('/cart');
+                  }}
+                  disabled={!product.inStock}
+                >
+                  Order Now
                 </Button>
               </CardFooter>
             </Card>
