@@ -97,8 +97,8 @@ const mockInventoryData: InventoryItem[] = [
 export const InventoryProvider = ({ children }: { children: React.ReactNode }) => {
   const [items, setItems] = useState<InventoryItem[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState('');
-  const [statusFilter, setStatusFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState('all');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -188,8 +188,8 @@ export const InventoryProvider = ({ children }: { children: React.ReactNode }) =
     return items.filter(item => {
       const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           item.description.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = !categoryFilter || item.category === categoryFilter;
-      const matchesStatus = !statusFilter || item.status === statusFilter;
+      const matchesCategory = categoryFilter === 'all' || !categoryFilter || item.category === categoryFilter;
+      const matchesStatus = statusFilter === 'all' || !statusFilter || item.status === statusFilter;
       
       return matchesSearch && matchesCategory && matchesStatus;
     });
