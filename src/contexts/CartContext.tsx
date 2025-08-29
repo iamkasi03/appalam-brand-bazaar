@@ -68,6 +68,25 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         return [...currentItems, { ...product, quantity: 1 }];
       }
     });
+
+    // Reduce inventory stock when item is added to cart
+    const inventory = localStorage.getItem('inventory');
+    if (inventory) {
+      const inventoryItems = JSON.parse(inventory);
+      const updatedInventory = inventoryItems.map((item: any) => {
+        if (item.id === product.id) {
+          const newStock = Math.max(0, item.stock - 1);
+          return {
+            ...item,
+            stock: newStock,
+            status: newStock === 0 ? 'out-of-stock' : newStock <= 10 ? 'low-stock' : 'in-stock'
+          };
+        }
+        return item;
+      });
+      localStorage.setItem('inventory', JSON.stringify(updatedInventory));
+      window.dispatchEvent(new Event('inventoryUpdate'));
+    }
   };
 
   const removeItem = (id: number) => {
