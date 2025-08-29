@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import ContactMessage from "./pages/ContactMessage";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 import Inventory from "./pages/Inventory";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +30,7 @@ const App = () => (
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/contact" element={<ContactMessage />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/inventory" element={<Inventory />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />

@@ -16,7 +16,7 @@ const Cart = () => {
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleOrderNow = async () => {
+  const handleOrderNow = () => {
     if (!user) {
       toast({
         title: "Please login",
@@ -36,43 +36,16 @@ const Cart = () => {
       return;
     }
 
-    setIsProcessing(true);
-
-    try {
-      // Process the order through contact message system
-      const orderDetails = {
-        name: user.email?.split('@')[0] || 'Customer',
-        email: user.email || '',
-        phone: '',
-        message: `Order Details:\n\n${items.map(item => 
-          `${item.name} x ${item.quantity} = ₹${(parseFloat(item.price.replace('₹', '')) * item.quantity).toFixed(2)}`
-        ).join('\n')}\n\nTotal: ₹${getTotalPrice().toFixed(2)}\n\nPlease process this order and contact me for payment and delivery details.`,
-        subject: `New Order - Total: ₹${getTotalPrice().toFixed(2)}`
-      };
-
-      const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: orderDetails
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Order placed successfully!",
-        description: "We'll contact you soon with payment and delivery details",
-      });
-
-      clearCart();
-      navigate('/');
-    } catch (error) {
-      console.error('Error placing order:', error);
-      toast({
-        title: "Order failed",
-        description: "Please try again or contact us directly",
-        variant: "destructive",
-      });
-    } finally {
-      setIsProcessing(false);
-    }
+    // Redirect to checkout page with order data
+    navigate('/checkout', {
+      state: {
+        items: items,
+        total: getTotalPrice()
+      }
+    });
+    
+    // Clear cart after successful redirect
+    clearCart();
   };
 
   if (items.length === 0) {
@@ -187,9 +160,8 @@ const Cart = () => {
                     <Button 
                       className="w-full bg-gradient-traditional hover:opacity-90 text-lg py-6"
                       onClick={handleOrderNow}
-                      disabled={isProcessing}
                     >
-                      {isProcessing ? 'Processing...' : 'Order Now'}
+                      Proceed to Checkout
                     </Button>
                     
                     <Button 
