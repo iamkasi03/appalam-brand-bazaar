@@ -32,7 +32,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl">
-              Experience the traditional taste of Madurai with our handcrafted appalams. 
+              Experience the traditional taste of Madurai with our machine made appalams. 
               Made with pure urad flour and time-honored recipes passed down through generations.
             </p>
           </div>
