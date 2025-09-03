@@ -54,8 +54,6 @@ const Footer = () => {
               <li><a href="#" className="text-heritage-foreground/80 hover:text-heritage-foreground transition-colors">Appalam 100g Pack</a></li>
               <li><a href="#" className="text-heritage-foreground/80 hover:text-heritage-foreground transition-colors">Appalam 200g Pack</a></li>
               <li><a href="#" className="text-heritage-foreground/80 hover:text-heritage-foreground transition-colors">Bulk Orders</a></li>
-              <li><a href="#" className="text-heritage-foreground/80 hover:text-heritage-foreground transition-colors">Custom Packaging</a></li>
-              <li><a href="#" className="text-heritage-foreground/80 hover:text-heritage-foreground transition-colors">Gift Hampers</a></li>
             </ul>
           </div>
 
